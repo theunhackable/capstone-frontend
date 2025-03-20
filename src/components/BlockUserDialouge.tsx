@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import axios from "@/api/axios"; // Assuming axios is configured properly
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
