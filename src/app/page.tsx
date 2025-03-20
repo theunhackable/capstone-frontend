@@ -8,12 +8,14 @@ import {
   FileText,
   PhoneCall,
   MapPin,
+  UserPlus,
 } from "lucide-react";
+import Link from "next/link";
 
 export default function Home() {
   return (
     <>
-      <main className="flex flex-col gap-32 items-center justify-center sm:items-start">
+      <main className="flex flex-col gap-32 items-center justify-center">
         {/* Hero Section */}
         <section
           id="hero"
@@ -23,54 +25,63 @@ export default function Home() {
             Book Your Appointment <br />
             <span className="text-sky-500">With Ease</span>
           </h1>
-          <p className="italic mt-3  text-lg text-gray-600 dark:text-gray-300">
+          <p className="italic mt-3 text-lg text-gray-600 dark:text-gray-300">
             Find the best doctors and book hassle-free appointments instantly.
           </p>
-          <div className="mt-5 flex gap-4">
-            <button className="flex items-center gap-2 bg-sky-500 text-white px-4 py-2 rounded-lg hover:bg-sky-600 transition duration-300">
+          <div className="mt-5 flex flex-wrap gap-4 justify-center">
+            <Link
+              href="/user/doctor/search"
+              className="flex items-center gap-2 bg-sky-500 text-white px-4 py-2 rounded-lg hover:bg-sky-600 transition duration-300"
+            >
               <Search size={18} />
               Search Doctors
-            </button>
-            <button className="flex items-center gap-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition duration-300">
-              <CalendarCheck size={18} />
-              Book Appointment
-            </button>
+            </Link>
+            <Link
+              href="/signup"
+              className="flex items-center gap-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition duration-300"
+            >
+              <UserPlus size={18} />
+              Sign up now
+            </Link>
           </div>
         </section>
 
         {/* Features Section */}
-        <section id="features" className="container  mt-10">
-          <div className="text-center mb-3">
-            <h2 className="text-3xl font-bold">Features</h2>
-            <p className="mt-2 text-gray-600 dark:text-gray-300 italic ">
-              Simple features to get an appointment
-            </p>
-          </div>
+        <section id="features" className="container mt-10 text-center">
+          <h2 className="text-3xl font-bold">Features</h2>
+          <p className="mt-2 text-gray-600 dark:text-gray-300 italic">
+            Simple features to get an appointment
+          </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-            <div className="flex flex-col items-center text-center p-5 border rounded-lg shadow-sm hover:shadow-md transition duration-300">
-              <Search size={32} className="text-sky-500" />
-              <h3 className="mt-3 text-xl font-bold">Search Doctors</h3>
-              <p className="text-gray-600 dark:text-gray-300 mt-1">
-                Find top-rated doctors by specialty.
-              </p>
-            </div>
-
-            <div className="flex flex-col items-center text-center p-5 border rounded-lg shadow-sm hover:shadow-md transition duration-300">
-              <CalendarCheck size={32} className="text-green-500" />
-              <h3 className="mt-3 text-xl font-bold">Easy Scheduling</h3>
-              <p className="text-gray-600 dark:text-gray-300 mt-1">
-                Book appointments at your convenience.
-              </p>
-            </div>
-
-            <div className="flex flex-col items-center text-center p-5 border rounded-lg shadow-sm hover:shadow-md transition duration-300">
-              <ShieldCheck size={32} className="text-yellow-500" />
-              <h3 className="mt-3 text-xl font-bold">Secure Records</h3>
-              <p className="text-gray-600 dark:text-gray-300 mt-1">
-                Keep medical records secure and safe.
-              </p>
-            </div>
+          <div className="flex flex-wrap justify-center gap-5 mt-5">
+            {[
+              {
+                icon: <Search size={32} className="text-sky-500" />,
+                title: "Search Doctors",
+                description: "Find top-rated doctors by specialty.",
+              },
+              {
+                icon: <CalendarCheck size={32} className="text-green-500" />,
+                title: "Easy Scheduling",
+                description: "Book appointments at your convenience.",
+              },
+              {
+                icon: <ShieldCheck size={32} className="text-yellow-500" />,
+                title: "Secure Records",
+                description: "Keep medical records secure and safe.",
+              },
+            ].map((feature, index) => (
+              <div
+                key={index}
+                className="flex flex-col items-center text-center p-5 border rounded-lg shadow-sm hover:shadow-md transition duration-300 w-64"
+              >
+                {feature.icon}
+                <h3 className="mt-3 text-xl font-bold">{feature.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300 mt-1">
+                  {feature.description}
+                </p>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -80,30 +91,35 @@ export default function Home() {
           <p className="mt-2 text-gray-600 dark:text-gray-300 italic">
             Get started in just 3 easy steps.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mt-5">
-            <div className="flex flex-col items-center text-center p-5 border rounded-lg shadow-sm hover:shadow-md transition duration-300">
-              <UserCheck size={32} className="text-indigo-500" />
-              <h3 className="mt-3 text-lg font-bold">Sign Up or Log In</h3>
-              <p className="text-gray-600 dark:text-gray-300 mt-1">
-                Create your account in minutes.
-              </p>
-            </div>
-
-            <div className="flex flex-col items-center text-center p-5 border rounded-lg shadow-sm hover:shadow-md transition duration-300">
-              <Stethoscope size={32} className="text-red-500" />
-              <h3 className="mt-3 text-lg font-bold">Choose a Doctor</h3>
-              <p className="text-gray-600 dark:text-gray-300 mt-1">
-                Browse and select the best doctor.
-              </p>
-            </div>
-
-            <div className="flex flex-col items-center text-center p-5 border rounded-lg shadow-sm hover:shadow-md transition duration-300">
-              <CalendarCheck size={32} className="text-green-500" />
-              <h3 className="mt-3 text-lg font-bold">Book Your Slot</h3>
-              <p className="text-gray-600 dark:text-gray-300 mt-1">
-                Schedule an appointment quickly.
-              </p>
-            </div>
+          <div className="flex flex-wrap justify-center gap-5 mt-5">
+            {[
+              {
+                icon: <UserCheck size={32} className="text-indigo-500" />,
+                title: "Sign Up or Log In",
+                description: "Create your account in minutes.",
+              },
+              {
+                icon: <Stethoscope size={32} className="text-red-500" />,
+                title: "Choose a Doctor",
+                description: "Browse and select the best doctor.",
+              },
+              {
+                icon: <CalendarCheck size={32} className="text-green-500" />,
+                title: "Book Your Slot",
+                description: "Schedule an appointment quickly.",
+              },
+            ].map((step, index) => (
+              <div
+                key={index}
+                className="flex flex-col items-center text-center p-5 border rounded-lg shadow-sm hover:shadow-md transition duration-300 w-64"
+              >
+                {step.icon}
+                <h3 className="mt-3 text-lg font-bold">{step.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300 mt-1">
+                  {step.description}
+                </p>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -113,31 +129,37 @@ export default function Home() {
           <p className="mt-2 text-gray-600 dark:text-gray-300">
             We’re here to help you 24/7.
           </p>
-          <div className="flex flex-col sm:flex-row gap-5 mt-5 justify-center">
-            <div className="flex items-center gap-2">
-              <PhoneCall size={20} className="text-blue-500" />
-              <p className="text-gray-600 dark:text-gray-300">
-                +1 (800) 123-4567
-              </p>
-            </div>
-            <div className="flex items-center gap-2">
-              <FileText size={20} className="text-green-500" />
-              <p className="text-gray-600 dark:text-gray-300">
-                support@doctorcare.com
-              </p>
-            </div>
-            <div className="flex items-center gap-2">
-              <MapPin size={20} className="text-red-500" />
-              <p className="text-gray-600 dark:text-gray-300">
-                123 Main Street, NY, USA
-              </p>
-            </div>
+          <div className="flex flex-wrap gap-5 mt-5 justify-center">
+            {[
+              {
+                icon: <PhoneCall size={20} className="text-blue-500" />,
+                text: "+1 (800) 123-4567",
+              },
+              {
+                icon: <FileText size={20} className="text-green-500" />,
+                text: "support@doctorcare.com",
+              },
+              {
+                icon: <MapPin size={20} className="text-red-500" />,
+                text: "123 Main Street, NY, USA",
+              },
+            ].map((contact, index) => (
+              <div
+                key={index}
+                className="flex items-center gap-2 p-3 border rounded-lg shadow-sm hover:shadow-md transition duration-300 w-64"
+              >
+                {contact.icon}
+                <p className="text-gray-600 dark:text-gray-300">
+                  {contact.text}
+                </p>
+              </div>
+            ))}
           </div>
         </section>
       </main>
 
       {/* Footer Section */}
-      <footer className="mt-10 p-5 bg-gray-100 text-center">
+      <footer className="mt-10 p-5 bg-gray-100 text-center w-full">
         <p className="text-sm text-gray-500">
           &copy; 2025 DoctorCare. All rights reserved.
         </p>
