@@ -24,7 +24,7 @@ export default function ClientDetailsCard({ id }: Props) {
   }, [axiosPrivate, id]);
   if (!user) return null;
   return (
-    <div className="border rounded-lg p-4 shadow-md bg-gray-50">
+    <div className="border rounded-lg p-4 shadow-md ">
       <h2 className="text-lg font-bold mb-2">
         👤 {user.role === "client" && "Client"}
         {user.role === "doctor" && "Doctor"} Details

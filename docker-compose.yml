@@ -1,0 +1,19 @@
+services:
+  nextjs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    networks:
+      - doctor_network
+    environment:
+      NODE_ENV: production
+      BASE_URL: http://doctor_backend:5000 # Set BASE_URL for the backend
+
+# Define the external network
+networks:
+  doctor_network:
+    external: true
