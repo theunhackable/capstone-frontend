@@ -22,13 +22,22 @@ const routesForDoctor = [
   { path: "/appointments", label: "Appointments" },
 ];
 
+const routesForGuest = [
+  { path: "/", label: "Home" },
+  { path: "/login", label: "Sign In" },
+  { path: "/signup", label: "Sign Up" },
+];
+
 export default function SidebarMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const { user } = useAuthStore(); // Get role from auth store
   // Set routes based on user role
-  const routes = user?.role === "client" ? routesForClient : routesForDoctor;
+  const routes = user
+    ? user.role === "client"
+      ? routesForClient
+      : routesForDoctor
+    : routesForGuest;
 
-  if (!user) return null;
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       {/* Button to open the menu */}

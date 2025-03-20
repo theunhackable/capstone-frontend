@@ -5,6 +5,7 @@ import useAxiosPrivate from "@/hooks/userAxiosPrivate";
 import AppointmentCard from "@/components/AppointmentCard";
 import ClientDetailsCard from "@/components/ClientDetailsCard";
 import { AppointmentData, User } from "@/types";
+import Link from "next/link";
 
 export default function AppointmentDetailsPage() {
   const { id } = useParams<{ id: string }>();
@@ -76,6 +77,12 @@ export default function AppointmentDetailsPage() {
       <h1 className="text-3xl font-bold text-center mb-5">
         Appointment Details 📝
       </h1>
+      <Link
+        className="text-center block text-sky-500 underline mb-4"
+        href="/appointments"
+      >
+        See all the appointments
+      </Link>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         <AppointmentCard appointment={data.appointment} />
         <ClientDetailsCard id={data.appointment.user_id} />

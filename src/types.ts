@@ -35,12 +35,17 @@ export interface AuthState extends AuthData {
   setAuth: (authData: AuthData) => void;
   logout: () => void;
 }
+export type AppointmentStatus =
+  | "up-coming"
+  | "on-going"
+  | "completed"
+  | "canceled";
 
 export type AppointmentData = {
   id: number;
   client_requirements: string;
   date_time: string; // ISO string for date
   doctor_id: number;
-  status: "up-coming" | "on-going" | "canceled"; // Enum-like union for status
+  status: AppointmentStatus;
   user_id: number;
 };
