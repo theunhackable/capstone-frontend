@@ -1,8 +1,13 @@
 import { loginSchema } from "@/schemas/login";
 import { z } from "zod";
+import { signupSchema } from "@/schemas/signup";
 
 export type LoginFormValues = z.infer<typeof loginSchema>;
 
+export type SignupFormData = z.infer<typeof signupSchema>;
+export interface SignUpResponse extends AccessToken, RefreshToken, User {
+  msg: string;
+}
 export interface AccessToken {
   access_token: string;
 }
@@ -30,3 +35,12 @@ export interface AuthState extends AuthData {
   setAuth: (authData: AuthData) => void;
   logout: () => void;
 }
+
+export type AppointmentData = {
+  id: number;
+  client_requirements: string;
+  date_time: string; // ISO string for date
+  doctor_id: number;
+  status: "up-coming" | "on-going" | "canceled"; // Enum-like union for status
+  user_id: number;
+};

@@ -10,7 +10,7 @@ const useRefreshToken = () => {
     try {
       const response = await axios.get<AccessToken>("/auth/refresh", {
         headers: {
-          Authorization: `Bearer: ${refresh_token}`,
+          Authorization: `Bearer ${refresh_token}`,
         },
       });
 

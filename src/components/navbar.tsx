@@ -2,7 +2,13 @@
 import { Stethoscope } from "lucide-react";
 import React, { useEffect } from "react";
 import ModeToggle from "@/components/theme-switcher";
+import dynamic from "next/dynamic";
+import SidebarMenu from "./SidebarMenu";
 
+// Dynamically import UserAvatar to avoid SSR mismatches
+const UserAvatar = dynamic(() => import("@/components/UserManager"), {
+  ssr: false,
+});
 export default function Navbar() {
   useEffect(() => {
     async function fetchdata() {
@@ -23,10 +29,10 @@ export default function Navbar() {
           <Stethoscope className="text-sky-500" />
           <span className="text-xl font-semibold">Doctor Online</span>
         </div>
-        <div className="flex items-center">
-          <div>
-            <ModeToggle />
-          </div>
+        <div className="flex items-center gap-5">
+          <UserAvatar />
+          <SidebarMenu />
+          <ModeToggle />
         </div>
       </header>
     </nav>

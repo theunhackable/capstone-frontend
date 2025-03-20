@@ -6,7 +6,10 @@ const useAuthStore = create<AuthState>((set) => ({
     typeof window !== "undefined"
       ? JSON.parse(localStorage.getItem("user") || "null")
       : null,
-  access_token: null,
+  access_token:
+    typeof window !== "undefined"
+      ? localStorage.getItem("accessToken") || null
+      : null,
   refresh_token:
     typeof window !== "undefined"
       ? localStorage.getItem("refreshToken") || null
@@ -15,6 +18,8 @@ const useAuthStore = create<AuthState>((set) => ({
   setAuth: (authData: AuthData) => {
     if (typeof window !== "undefined") {
       localStorage.setItem("user", JSON.stringify(authData.user));
+
+      localStorage.setItem("accessToken", authData.access_token as string);
       localStorage.setItem("refreshToken", authData.refresh_token as string);
     }
     set({
@@ -27,6 +32,7 @@ const useAuthStore = create<AuthState>((set) => ({
   logout: () => {
     localStorage.removeItem("user");
     localStorage.removeItem("refreshToken");
+    localStorage.removeItem("accessToken");
     set({ user: null, access_token: null, refresh_token: null });
   },
 }));
